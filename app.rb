@@ -3,8 +3,13 @@ require 'slim'
 require 'net/http'
 require 'json'
 
+CLIENT_ID = '7ccd2e57725efec3b429'
+CLIENT_SECRET = '53b81ba04fb0f7cffb571bf60aa9ffd453f86f05'
+
+ORG = 'rails'
+
 def org_repos_names
-	uri = URI("https://api.github.com/orgs/rails/repos?")
+	uri = URI("https://api.github.com/orgs/#{ORG}/repos?client_id=#{CLIENT_ID}&client_secret=#{CLIENT_SECRET}")
 	json_data = Net::HTTP.get(uri)
 	org_repos = JSON.parse(json_data)
 	repos_names = []
@@ -13,7 +18,7 @@ def org_repos_names
 end
 
 def last_year_activity repo
-	uri = URI("https://api.github.com/repos/rails/#{repo}/stats/commit_activity")
+	uri = URI("https://api.github.com/repos/#{ORG}/#{repo}/stats/commit_activity?client_id=#{CLIENT_ID}&client_secret=#{CLIENT_SECRET}")
 	json_data = Net::HTTP.get(uri)
 	stats = JSON.parse(json_data)
 end

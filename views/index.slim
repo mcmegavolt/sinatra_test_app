@@ -1,2 +1,6 @@
 h1 Rails org committing statistics on GitHub
-p = all_repos_year_activity
+- all_repos_year_activity.each do |repo|
+	h3 = repo[0]
+	ul
+		- repo[1].each do |week|
+			li = week["total"]
