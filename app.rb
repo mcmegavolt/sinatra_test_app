@@ -32,5 +32,5 @@ def all_repos_year_activity
 end
 
 get '/' do
-  slim :index
+  slim :index, :locals => { :org => ORG }
 end

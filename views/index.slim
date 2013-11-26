@@ -1,6 +1,25 @@
-h1 Rails org committing statistics on GitHub
-- all_repos_year_activity.each do |repo|
-	h3 = repo[0]
-	ul
-		- repo[1].each do |week|
-			li = week["total"]
+html
+  head
+    title The last year #{org} org commiting statistics on GitHub
+    link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"
+  body
+    .container
+      .row
+        .col-lg-12
+          h1 The last year #{org} org commiting statistics on GitHub
+          table.table.table-hover.table-condensed.table-bordered.table-striped
+            thead
+              tr
+                th Repo
+                th(colspan="52") Weekly commits
+                th Total
+            tbody
+              - all_repos_year_activity.each do |repo|
+                tr
+                  td = repo[0]
+                  - total = 0
+                  - repo[1].each do |week|
+                    - total += week["total"]
+                    td = week["total"]
+                  td = total
+
