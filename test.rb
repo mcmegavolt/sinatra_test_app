@@ -19,7 +19,7 @@ class MyTest < Minitest::Test
     assert last_response.ok?
   end
 
-  def test_last_year_activity_method_returns_array
+  def test_activity_methods_returns_objects
     assert_kind_of Array, app.send(:last_year_activity, ORG)
     assert_kind_of Hash, app.send(:all_repos_year_activity)
   end
